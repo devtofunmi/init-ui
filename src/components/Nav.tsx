@@ -34,7 +34,7 @@ const Nav = ({
         
         {/* Desktop Links - Improved Tablet Responsiveness */}
         <div className="hidden lg:flex items-center gap-6 xl:gap-10">
-          {links?.slice(0, 4).map((link, i) => {
+          {links?.slice(0, 3).map((link, i) => {
                const label = typeof link === 'string' ? link : link.label;
                const href = typeof link === 'string' ? `#${link.toLowerCase()}` : link.href;
                return (
@@ -105,7 +105,7 @@ const Nav = ({
                    
                   <div className="flex flex-col gap-8 relative z-10">
                     <span className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-600 ml-1">Interface Navigation</span>
-                    {links?.slice(0, 4).map((link, id) => {
+                    {links?.slice(0, 3).map((link, id) => {
                       const label = typeof link === 'string' ? link : link.label;
                       const href = typeof link === 'string' ? `#${link.toLowerCase().replace(/\s+/g, '-')}` : link.href;
                       return (

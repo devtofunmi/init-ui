@@ -26,14 +26,16 @@ const Landing = ({ onLaunch }) => {
           </div>
         </div>
         
-        {/* Full-width Hero Section */}
-        <Hero 
-          title="UI That Follows Your Intent."
-          subtitle="The first generative UI engine that translates natural language into premium, production-ready interfaces in real-time."
-          ctaText="Launch Workspace"
-          onCtaClick={onLaunch}
-          showDisclaimer={true}
-        />
+        {/* Full-width Hero Section - Custom Mobile Heading Margin */}
+        <div className="[&_h1]:mt-20 md:[&_h1]:mt-5">
+          <Hero 
+            title="The UI Strikes Back."
+            subtitle="The first generative UI engine that translates galactic intent into premium, battle-ready command interfaces in real-time."
+            ctaText="Awaken Your Power"
+            onCtaClick={onLaunch}
+            showDisclaimer={true}
+          />
+        </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-10 space-y-32 pb-32">

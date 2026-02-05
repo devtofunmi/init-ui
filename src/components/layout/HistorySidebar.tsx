@@ -2,7 +2,7 @@ import React from 'react';
 import { Plus, Trash2, History, ChevronLeft } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
-export const Sidebar = ({ 
+export const HistorySidebar = ({ 
   isOpen, 
   onClose,
   threads, 
@@ -26,10 +26,8 @@ export const Sidebar = ({
 
   const handleNewThread = async () => {
     try {
-      const newThread = await onCreateThread();
-      if (newThread?.id) {
-        onSelectThread(newThread.id);
-      }
+      await onCreateThread();
+      onClose();
     } catch (error) {
       console.error("Failed to create thread:", error);
     }
@@ -115,7 +113,10 @@ export const Sidebar = ({
                 )} />
 
                 <button 
-                  onClick={() => onSelectThread(t.id)} 
+                  onClick={() => {
+                    onSelectThread(t.id);
+                    onClose();
+                  }} 
                   className="flex-1 text-left flex flex-col gap-1 min-w-0"
                 >
                   <span className={cn(

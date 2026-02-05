@@ -19,7 +19,7 @@ import QuickActions from "../components/QuickActions";
 export const registry = [
   {
     name: "Nav",
-    description: "Crucial top-of-page component for landing pages and marketing sites. Includes logo and horizontal navigation links.",
+    description: "Main navigation bar. Root of the page. Limit links to a maximum of 3 for premium aesthetic.",
     component: Nav,
     propsSchema: z.object({
       logoText: z.string().nullable().optional(),
@@ -54,7 +54,8 @@ export const registry = [
     component: QuickActions,
     propsSchema: z.object({
       primaryText: z.string().nullable().optional().describe("Text for the main action button"),
-      showSearch: z.boolean().nullable().optional()
+      showSearch: z.boolean().nullable().optional(),
+      onAction: z.any().optional()
     })
   },
   {
@@ -96,7 +97,8 @@ export const registry = [
     description: "Structured data list for dashboards. Use for transactions, user lists, or logs. Includes status columns and ID tracking.",
     component: DataTable,
     propsSchema: z.object({
-      title: z.string().nullable().optional()
+      title: z.string().nullable().optional(),
+      onAction: z.any().optional()
     })
   },
   {
@@ -109,8 +111,9 @@ export const registry = [
         title: z.string().nullable().optional(),
         desc: z.string().nullable().optional(),
         time: z.string().nullable().optional(),
-        type: z.enum(['success', 'warning', 'info']).nullable().optional()
-      })).nullable().optional()
+        type: z.string().nullable().optional()
+      })).nullable().optional(),
+      onAction: z.any().optional()
     })
   },
   {

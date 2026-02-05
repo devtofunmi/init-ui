@@ -2,8 +2,8 @@ import { Plus, Download, Filter, Share2, Search } from 'lucide-react';
 
 const QuickActions = ({ 
   primaryText = "Execute Command",
-  showSearch = true
-}) => {
+  showSearch = true,
+}: { primaryText?: string, showSearch?: boolean }) => {
   return (
     <div className="w-full">
       <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-4 sm:gap-6">
@@ -39,10 +39,16 @@ const QuickActions = ({
             ))}
           </div>
           
-          <button className="flex-1 py-5 sm:flex-none px-6 sm:px-10 h-14 sm:h-[72px] bg-brand text-white rounded-[1.2rem] sm:rounded-[1.8rem] font-black text-[10px] sm:text-[12px] uppercase tracking-[0.2em] sm:tracking-[0.3em] shadow-[0_20px_50px_-10px_hsla(var(--brand-glow)/0.5)] brand-glow flex items-center justify-center gap-3 sm:gap-4 hover:scale-105 active:scale-95 transition-all relative overflow-hidden group/primary italic">
+          <button
+             className="flex-1 py-5 sm:flex-none px-6 sm:px-10 h-14 sm:h-[72px] bg-brand text-white rounded-[1.2rem] sm:rounded-[1.8rem] font-black text-[10px] sm:text-[12px] uppercase tracking-[0.2em] sm:tracking-[0.3em] shadow-[0_20px_50px_-10px_hsla(var(--brand-glow)/0.5)] brand-glow flex items-center justify-center gap-3 sm:gap-4 hover:scale-105 active:scale-95 transition-all relative overflow-hidden group/primary italic"
+          >
              <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover/primary:translate-x-[100%] transition-transform duration-1000 skew-x-[-30deg]" />
              <Plus size={18} strokeWidth={3} className="sm:size-5 relative z-10" />
-             <span className="relative z-10 whitespace-nowrap">{primaryText}</span>
+             <span 
+               className="relative z-10 whitespace-nowrap outline-none"
+             >
+               {primaryText}
+             </span>
           </button>
         </div>
       </div>

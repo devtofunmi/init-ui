@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { ArrowRight, ChevronRight } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
@@ -61,14 +61,22 @@ export const ChatSidebar = ({
           return (
             <div key={message.id} className={`flex flex-col ${isUser ? 'items-end text-right' : 'items-start text-left'} group animate-in fade-in slide-in-from-bottom-4 duration-500`}>
               <div className={cn(
-                "max-w-[85%] rounded-[2rem] p-6 text-[14px] leading-relaxed transition-all shadow-2xl relative noise overflow-hidden",
+                "max-w-[85%] rounded-[2rem] p-6 text-[14px] leading-relaxed transition-all relative noise overflow-hidden",
                 isUser 
-                  ? 'bg-brand text-white rounded-tr-none brand-glow shadow-brand/20' 
+                  ? 'bg-brand text-white rounded-tr-none' 
                   : 'glass-card text-zinc-300 rounded-tl-none premium-border'
               )}>
                 {isUser && <div className="absolute inset-0 bg-white/10 opacity-20 group-hover:opacity-30 transition-opacity" />}
                 <p className="relative z-10 font-medium">
-                  {text}
+                  {text?.split(/(\*\*.*?\*\*|\*.*?\*)/g).map((part, i) => {
+                    if (part.startsWith('**') && part.endsWith('**')) {
+                      return <strong key={i} className="font-black text-white">{part.slice(2, -2)}</strong>;
+                    }
+                    if (part.startsWith('*') && part.endsWith('*')) {
+                      return <em key={i} className="italic text-zinc-400 font-bold">{part.slice(1, -1)}</em>;
+                    }
+                    return part;
+                  })}
                 </p>
               </div>
               <div className="mt-3 flex items-center gap-2 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

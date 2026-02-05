@@ -8,7 +8,7 @@ import {
 } from "@tambo-ai/react";
 
 // Components
-import { Sidebar } from '../components/layout/Sidebar';
+import { HistorySidebar } from '../components/layout/HistorySidebar';
 import { Header } from '../components/layout/Header';
 import { Canvas } from '../components/layout/Canvas';
 import { ChatSidebar } from '../components/layout/ChatSidebar';
@@ -136,7 +136,7 @@ const ChatInterface = React.memo(({ onBackToLanding }: ChatInterfaceProps) => {
   return (
     <div className="flex h-screen w-full bg-black overflow-hidden selection:bg-white selection:text-black antialiased">
       {/* Sidebar for History */}
-      <Sidebar 
+      <HistorySidebar 
         isOpen={isHistoryOpen} 
         onClose={() => setHistoryOpen(false)}
         threads={threads} 

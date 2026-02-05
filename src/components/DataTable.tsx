@@ -1,84 +1,79 @@
 import { MoreHorizontal, ArrowDownLeft, ArrowUpRight } from 'lucide-react';
 import { cn } from '../lib/utils';
 
-const DataTable = ({ title = "Interface Ledger" }) => {
-  const data = [
+const DataTable = ({  title = "Ledger Activity",
+}: { title?: string }) => {
+  const transactions = [
     { id: 1, name: "Node Activation", date: "05 FEB 2026", amount: "Ξ 1.240", status: "Success", type: "in" },
     { id: 2, name: "Protocol Sync", date: "05 FEB 2026", amount: "-Ξ 0.082", status: "Pending", type: "out" },
     { id: 3, name: "Core Uplink", date: "04 FEB 2026", amount: "Ξ 15.000", status: "Success", type: "in" },
-    { id: 4, name: "Neural Cache", date: "04 FEB 2026", amount: "-Ξ 0.420", status: "Success", type: "out" },
   ];
 
   return (
     <div className="w-full">
-      <div className="glass-card noise premium-border rounded-[2.5rem] overflow-hidden shadow-2xl relative group">
-        {/* Header decoration */}
+      <div className="w-full h-full glass-card noise premium-border rounded-[2.5rem] flex flex-col group relative overflow-hidden bg-zinc-950/40 min-h-[500px]">
+      {/* Active Synthesis Scan */}
+      <div className="scanning-line opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      
+      {/* Header decoration */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand/30 to-transparent" />
         
         <div className="p-8 md:p-10 flex items-center justify-between bg-zinc-950/40 relative z-10">
-          <div className="flex items-center gap-4">
-            <div className="w-2 h-2 rounded-full bg-brand animate-pulse" />
-            <h3 className="text-sm font-black uppercase tracking-[0.5em] text-white italic">
-              {title}
-            </h3>
+          <div className="flex flex-col gap-1.5">
+            <span className="text-[10px] font-black text-brand uppercase tracking-[0.3em]">Operational Ledger</span>
+            <h3 className="text-2xl font-black text-white italic tracking-tighter uppercase">{title}</h3>
           </div>
           <div className="hidden md:block px-3 py-1 bg-white/5 border border-white/10 rounded-lg">
             <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">Auto-Refetching</span>
           </div>
         </div>
 
-        <div className="overflow-x-auto relative z-10 scrollbar-hide">
-          <table className="w-full text-left min-w-[700px]">
-            <thead className="bg-white/5 border-b border-white/5">
-              <tr>
-                {["Operation", "Timestamp", "Resource Value", "State", ""].map((h, i) => (
-                  <th key={h} className={cn(
-                    "px-10 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600",
-                    i === 4 ? "text-right" : ""
-                  )}>{h}</th>
-                ))}
+        <div className="flex-1 overflow-x-auto relative z-10">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="border-b border-white/5">
+                <th className="px-10 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500">Transaction</th>
+                <th className="px-10 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500">Node Timestamp</th>
+                <th className="px-10 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500">Value (ETH)</th>
+                <th className="px-10 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500">Status</th>
+                <th className="px-10 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 text-right">Action</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-white/[0.03]">
-              {data.map((item) => (
+              {transactions.map((item) => (
                 <tr key={item.id} className="group hover:bg-brand/[0.02] transition-all duration-500 cursor-pointer">
                   <td className="px-10 py-8">
                     <div className="flex items-center gap-4">
-                       <div className={cn(
-                         "w-10 h-10 rounded-xl flex items-center justify-center border transition-all duration-500",
-                         item.type === 'in' 
-                          ? 'bg-emerald-500/10 border-emerald-500/10 text-emerald-500 group-hover:scale-110' 
-                          : 'bg-zinc-900 border-white/10 text-zinc-400 group-hover:scale-110'
-                       )}>
-                          {item.type === 'in' ? <ArrowDownLeft size={16} /> : <ArrowUpRight size={16} />}
-                       </div>
-                       <span className="text-base font-black text-white tracking-tighter uppercase italic group-hover:text-brand transition-colors duration-500">{item.name}</span>
+                      <div className={cn(
+                        "w-10 h-10 rounded-xl flex items-center justify-center border transition-colors",
+                        item.type === 'in' ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-500" : "bg-zinc-900 border-white/5 text-zinc-500"
+                      )}>
+                        {item.type === 'in' ? <ArrowDownLeft size={18} /> : <ArrowUpRight size={18} />}
+                      </div>
+                      <span className="text-sm font-black tracking-widest text-white uppercase">{item.name}</span>
                     </div>
                   </td>
                   <td className="px-10 py-8">
-                    <span className="text-[10px] font-black text-zinc-600 uppercase tracking-widest leading-none bg-white/5 px-3 py-1.5 rounded-md">{item.date}</span>
+                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">{item.date}</span>
                   </td>
                   <td className="px-10 py-8">
                     <span className={cn(
-                      "text-sm font-black tracking-tight",
-                      item.type === 'in' ? 'text-emerald-400' : 'text-zinc-200 opacity-60'
-                    )}>
-                      {item.amount}
-                    </span>
+                      "text-sm font-black tracking-tighter",
+                      item.type === 'in' ? "text-emerald-500" : "text-white"
+                    )}>{item.amount}</span>
                   </td>
                   <td className="px-10 py-8">
                     <span className={cn(
-                      "inline-flex items-center gap-2 px-3 py-1 rounded-lg text-[9px] font-black uppercase tracking-[0.2em] border transition-all duration-500 backdrop-blur-md",
-                      item.status === 'Success' 
-                        ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20 group-hover:bg-emerald-500/20' 
-                        : 'bg-amber-500/10 text-amber-500 border-amber-500/20 group-hover:bg-amber-500/20'
+                      "px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border",
+                      item.status === 'Success' ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-500" : "bg-amber-500/10 border-amber-500/20 text-amber-500"
                     )}>
-                      <div className={cn("w-1 h-1 rounded-full", item.status === 'Success' ? 'bg-emerald-400 animate-pulse' : 'bg-amber-500')} />
                       {item.status}
                     </span>
                   </td>
                   <td className="px-10 py-8 text-right">
-                    <button className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-zinc-500 hover:text-white hover:bg-brand/20 hover:border-brand/30 border border-transparent transition-all shadow-xl group/action">
+                    <button
+                      className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-zinc-500 hover:text-white hover:bg-brand/20 hover:border-brand/30 border border-transparent transition-all shadow-xl group/action"
+                    >
                       <MoreHorizontal size={14} className="group-hover/action:scale-125 transition-transform" />
                     </button>
                   </td>
@@ -90,7 +85,11 @@ const DataTable = ({ title = "Interface Ledger" }) => {
 
         {/* Action Footer */}
         <div className="p-6 md:p-8 border-t border-white/5 bg-zinc-950/40 flex justify-center relative z-10">
-           <button className="text-[9px] font-black text-zinc-600 hover:text-brand uppercase tracking-[0.5em] transition-colors italic">Load Full Sync History</button>
+          <button
+            className="w-full py-5 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 hover:text-white border-t border-white/5 hover:bg-white/[0.02] transition-all bg-white/[0.01]"
+          >
+            Deconstruct Full Ledger
+          </button>
         </div>
       </div>
     </div>

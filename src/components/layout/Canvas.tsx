@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 export const Canvas = ({ thread, canvasItems, onTryExample }) => {
   console.log("Rendering Canvas with items:", canvasItems.map(i => i.name));
@@ -42,26 +42,26 @@ export const Canvas = ({ thread, canvasItems, onTryExample }) => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-2xl">
               <button 
-                onClick={() => onTryExample("Synthesize a full-scale personal finance dashboard. Include a UserOverview, a MetricGrid, QuickActions, and a DataSummary showing 'Monthly Spending' as the mainMetric with a value of '$4,200' and several secondary metrics for 'Rent', 'Groceries', and 'Savings', a Table and ActivityFeed.")}
+                onClick={() => onTryExample("Synthesize a tactical Rebel Alliance Fleet Command HUD. Include a UserOverview for 'Admiral Ackbar', a MetricGrid showing 'Ship Readiness' and 'Fuel Reserves', QuickActions for 'Fleet Maneuvers', and a DataSummary showing 'Operational Shield Capacity' as the mainMetric with a value of '98.4%' and secondary metrics for 'X-Wing Squadrons' and 'Ion Cannon Charge', a Table of 'Recent Skirmishes' and an ActivityFeed of 'Sector 7 Comms'.")}
                 className="group p-4 glass-card noise premium-border rounded-3xl text-left hover:scale-[1.02] active:scale-95 transition-all duration-500 hover:border-brand/40 relative overflow-hidden"
               >
                 <div className="flex flex-col gap-0.5 mb-3">
                   <span className="text-[8px] font-black text-brand uppercase tracking-[0.4em]">Synthesize</span>
-                  <h3 className="text-lg font-black text-white tracking-tighter uppercase italic group-hover:text-brand transition-colors">Personal Finance</h3>
+                  <h3 className="text-lg font-black text-white tracking-tighter uppercase italic group-hover:text-brand transition-colors">Fleet Command HUD</h3>
                 </div>
-                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-relaxed">Synthesis of a full-scale dashboard.</p>
+                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-relaxed">Tactical Rebel Alliance command center.</p>
               </button>
 
               <button 
-                onClick={() => onTryExample("Build a complete high-energy Gym landing page. Include a Nav, a bold Hero, Stats about members, specialized Training Features, Membership Pricing, Testimonials from athletes, and a Footer.")}
+                onClick={() => onTryExample("Build a complete high-energy Galactic Bounty Hub. Include a Nav, a bold Hero for 'The Guild', Stats about captured targets, specialized bounty Hunter Features, Pricing tiers for hunting permits, Testimonials from infamous hunters, and a Footer.")}
                 className="group p-4 glass-card noise premium-border rounded-3xl text-left hover:scale-[1.02] active:scale-95 transition-all duration-500 hover:border-brand/40 relative overflow-hidden"
               >
                
                 <div className="flex flex-col gap-0.5 mb-3">
                   <span className="text-[8px] font-black text-brand uppercase tracking-[0.4em]">Construct</span>
-                  <h3 className="text-lg font-black text-white tracking-tighter uppercase italic group-hover:text-brand transition-colors">Gym Landing Page</h3>
+                  <h3 className="text-lg font-black text-white tracking-tighter uppercase italic group-hover:text-brand transition-colors">Galactic Bounty Hub</h3>
                 </div>
-                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-relaxed">High-energy marketing site synthesis.</p>
+                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-relaxed">Track targets and collect rewards across the rim.</p>
               </button>
             </div>
           </div>

@@ -6,7 +6,7 @@ import { Activity, Shield, Zap, Cpu } from 'lucide-react';
 // --- Schema Definition ---
 export const dataSummarySchema = z.object({
   title: z.string().nullable().optional().describe("Main heading for the dashboard panel"),
-  status: z.enum(['optimal', 'warning', 'critical']).nullable().optional().describe("Overall system health"),
+  status: z.string().nullable().optional().describe("Overall system health"),
   mainMetric: z.object({
     label: z.string().nullable().optional(),
     value: z.string().nullable().optional(),
@@ -18,6 +18,7 @@ export const dataSummarySchema = z.object({
     trend: z.string().nullable().optional()
   })).nullable().optional().describe("Supporting performance metrics"),
   systemLoad: z.number().nullable().optional().describe("Current workload percentage (0-100)"),
+  onAction: z.any().optional().describe("Internal: Sent by Tambo to handle UI interactions"),
 });
 
 // --- Component ---
@@ -26,7 +27,7 @@ export const DataSummary = ({
   status = "optimal",
   mainMetric,
   metrics = [],
-  systemLoad = 45
+  systemLoad = 45,
 }: z.infer<typeof dataSummarySchema>) => {
   
   const statusColors = {
@@ -43,6 +44,9 @@ export const DataSummary = ({
 
   return (
     <div className="w-full glass-card noise premium-border rounded-[2.5rem] p-8 md:p-10 flex flex-col gap-10 group relative overflow-hidden bg-zinc-950/40">
+      {/* Active Synthesis Scan */}
+      <div className="scanning-line opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      
       {/* Background Ambience */}
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-brand/5 blur-[120px] rounded-full pointer-events-none opacity-50" />
       
@@ -143,7 +147,9 @@ export const DataSummary = ({
                  </div>
               </div>
 
-              <button className="mt-auto w-full py-4 rounded-xl bg-brand text-white text-[10px] font-black uppercase tracking-widest brand-glow hover:scale-105 active:scale-95 transition-all">
+              <button
+                className="mt-auto w-full py-4 rounded-xl bg-brand text-white text-[10px] font-black uppercase tracking-widest brand-glow hover:scale-105 active:scale-95 transition-all"
+              >
                 Full System Scan
               </button>
            </div>

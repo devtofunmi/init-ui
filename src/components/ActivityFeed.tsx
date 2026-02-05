@@ -6,8 +6,8 @@ const ActivityFeed = ({
     { title: "Protocol Breach", desc: "Blocked unauthorized neural link", time: "2m ago", type: "warning" },
     { title: "Node Synchronized", desc: "Core status: Optimal", time: "15m ago", type: "success" },
     { title: "Data Migration", desc: "L3 cache flushed to mainnet", time: "1h ago", type: "info" }
-  ]
-}) => {
+  ],
+}: { title?: string, items?: any[] }) => {
   const getIcon = (type) => {
     switch(type) {
       case 'warning': return <Zap className="text-amber-500" size={16} />;
@@ -20,7 +20,7 @@ const ActivityFeed = ({
     <div className="w-full h-full"> 
       <div className="glass-card noise premium-border rounded-[2.5rem] p-8 h-full flex flex-col relative overflow-hidden group">
         {/* Animated Scanning Line */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-brand/20 to-transparent animate-[pulse_3s_infinite]" />
+        <div className="scanning-line opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         
         <div className="flex items-center justify-between mb-8 relative z-10">
           <div className="flex items-center gap-3">
@@ -59,7 +59,9 @@ const ActivityFeed = ({
           ))}
         </div>
 
-        <button className="mt-6 w-full py-4 rounded-xl bg-white/[0.02] border border-white/5 text-[9px] font-black text-zinc-500 hover:text-white uppercase tracking-[0.4em] hover:bg-white/5 transition-all duration-500">
+        <button 
+          className="mt-6 w-full py-4 rounded-xl bg-white/[0.02] border border-white/5 text-[9px] font-black text-zinc-500 hover:text-white uppercase tracking-[0.4em] hover:bg-white/5 transition-all duration-500"
+        >
            Explore Neural Logs
         </button>
       </div>
