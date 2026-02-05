@@ -4,52 +4,135 @@
 
 @layer base {
   :root {
-    --background: 15 23 42; /* Slate 950 */
-    --foreground: 248 250 252; /* Slate 50 */
+    --background: 240 10% 2%;
+    --foreground: 0 0% 100%;
     
-    --card: 30 41 59; /* Slate 800 */
-    --card-foreground: 248 250 252;
+    --brand-primary: 263 90% 64%; /* Modern Purple */
+    --brand-secondary: 280 80% 50%;
+    --brand-glow: 263 90% 64%;
+    
+    --card: 240 10% 4%;
+    --card-foreground: 0 0% 100%;
  
-    --popover: 15 23 42;
-    --popover-foreground: 248 250 252;
+    --primary: 0 0% 100%;
+    --primary-foreground: 240 10% 2%;
  
-    --primary: 139 92 246; /* Violet 500 */
-    --primary-foreground: 255 255 255;
- 
-    --secondary: 30 41 59; /* Slate 800 */
-    --secondary-foreground: 248 250 252;
- 
-    --muted: 30 41 59;
-    --muted-foreground: 148 163 184; /* Slate 400 */
- 
-    --accent: 30 41 59;
-    --accent-foreground: 248 250 252;
- 
-    --destructive: 225 29 72; /* Rose 600 */
-    --destructive-foreground: 255 255 255;
+    --border: 240 5% 10%;
+    --radius: 1.5rem;
+  }
 
-    --border: 51 65 85; /* Slate 700 */
-    --input: 51 65 85;
-    --ring: 139 92 246;
+  /* Theme Presets */
+  [data-theme='blue'] {
+    --brand-primary: 217 91% 60%;
+    --brand-secondary: 224 76% 48%;
+    --brand-glow: 217 91% 60%;
+  }
+
+  [data-theme='emerald'] {
+    --brand-primary: 160 84% 39%;
+    --brand-secondary: 163 94% 24%;
+    --brand-glow: 160 84% 39%;
+  }
+
+  [data-theme='rose'] {
+    --brand-primary: 346 87% 60%;
+    --brand-secondary: 349 77% 40%;
+    --brand-glow: 346 87% 60%;
+  }
+  
+  [data-theme='amber'] {
+    --brand-primary: 38 92% 50%;
+    --brand-secondary: 35 91% 32%;
+    --brand-glow: 38 92% 50%;
   }
 }
 
 body {
-  @apply bg-slate-950 text-slate-50 antialiased;
-  background-color: rgb(var(--background));
-  color: rgb(var(--foreground));
+  @apply bg-black text-white antialiased selection:bg-white selection:text-black;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--brand-primary) / 0.5);
+  }
 }
 
 @layer utilities {
-  .glass {
-    @apply bg-slate-900/70 backdrop-blur-md border border-white/10;
+  .mesh-gradient {
+    background-color: hsl(var(--background));
+    background-image: 
+      radial-gradient(at 0% 0%, hsla(var(--brand-primary) / 0.12) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(var(--brand-secondary) / 0.08) 0px, transparent 50%),
+      radial-gradient(at 50% 50%, hsla(var(--brand-primary) / 0.03) 0px, transparent 80%),
+      radial-gradient(at 100% 100%, hsla(var(--brand-primary) / 0.05) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, hsla(var(--brand-secondary) / 0.12) 0px, transparent 50%);
   }
-  
+
+  .noise {
+    position: relative;
+  }
+
+  .noise::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0.03;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  .text-brand {
+    color: hsl(var(--brand-primary));
+  }
+
+  .bg-brand {
+    background-color: hsl(var(--brand-primary));
+  }
+
+  .brand-glow {
+    box-shadow: 0 0 60px -15px hsla(var(--brand-glow) / 0.4);
+  }
+
   .glass-card {
-    @apply bg-white/5 backdrop-blur-sm border border-white/10 shadow-lg;
+    @apply bg-white/[0.02] backdrop-blur-2xl border border-white/5 shadow-2xl transition-all duration-700 hover:border-white/20 hover:bg-white/[0.04];
   }
-  
+
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-violet-400 to-cyan-400;
+    @apply bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/40;
+  }
+
+  .brand-gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-br;
+    background-image: linear-gradient(to bottom right, hsl(var(--brand-primary)), hsl(var(--brand-secondary)));
+  }
+
+  .inner-glow {
+    box-shadow: inset 0 1px 1px 0 hsla(0, 0%, 100%, 0.1);
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }
