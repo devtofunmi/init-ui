@@ -97,7 +97,8 @@ export const GithubPushModal: React.FC<GithubPushModalProps> = ({
     <Dialog.Root open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] animate-in fade-in duration-300" />
-        <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2rem)] md:w-full max-w-md max-h-[90vh] overflow-y-auto bg-zinc-900 border border-white/10 p-6 md:p-8 rounded-3xl shadow-2xl z-[101] animate-in zoom-in-95 fade-in duration-300 noise">
+        <div className="fixed inset-0 z-[101] flex items-center justify-center p-4 pointer-events-none">
+          <Dialog.Content className="w-full max-w-md max-h-[90vh] overflow-y-auto bg-zinc-900 border border-white/10 p-6 md:p-8 rounded-3xl shadow-2xl animate-in zoom-in-95 fade-in duration-300 noise pointer-events-auto">
           
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-3">
@@ -211,6 +212,7 @@ export const GithubPushModal: React.FC<GithubPushModalProps> = ({
           )}
 
         </Dialog.Content>
+        </div>
       </Dialog.Portal>
     </Dialog.Root>
   );
