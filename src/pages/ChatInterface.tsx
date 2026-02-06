@@ -161,6 +161,7 @@ const ChatInterface = React.memo(({ onBackToLanding }: ChatInterfaceProps) => {
   }, [thread]);
 
 
+
   return (
     <div className="flex h-screen w-full bg-black overflow-hidden selection:bg-white selection:text-black antialiased">
       {/* Sidebar for History */}

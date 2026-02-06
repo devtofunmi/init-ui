@@ -8,7 +8,7 @@ export interface Thread {
 
 export interface Message {
   id: string;
-  role: 'user' | 'assistant' | 'system';
+  role: 'user' | 'assistant' | 'system' | 'tool';
   content?: ContentItem[];
   component?: {
     componentName?: string;

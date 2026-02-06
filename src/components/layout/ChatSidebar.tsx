@@ -1,8 +1,11 @@
 import { useRef, useEffect } from 'react';
-import { ArrowRight, ChevronRight } from 'lucide-react';
+import { ArrowRight, ChevronRight, Mic, Square } from 'lucide-react';
 import { cn } from '../../lib/utils';
+import { useTamboVoice } from '@tambo-ai/react';
 
-export const ChatSidebar = ({ 
+import { ChatSidebarProps } from '../../types';
+
+export const ChatSidebar: React.FC<ChatSidebarProps> = ({ 
   isOpen, 
   onClose,
   thread, 
@@ -10,9 +13,16 @@ export const ChatSidebar = ({
   value, 
   setValue, 
   onSubmit, 
-  isPending 
+  isPending
 }) => {
   const messagesEndRef = useRef(null);
+  const { 
+    startRecording, 
+    stopRecording, 
+    isRecording, 
+    transcript, 
+    isTranscribing 
+  } = useTamboVoice();
 
   useEffect(() => {
     if (messagesEndRef.current) {
@@ -20,9 +30,26 @@ export const ChatSidebar = ({
     }
   }, [chatHistory]);
 
+  // Handle voice transcript
+  useEffect(() => {
+    if (transcript && !isRecording && !isTranscribing) {
+      setValue(transcript);
+      // Optional: Auto-submit on voice stop
+      setTimeout(() => onSubmit(), 100);
+    }
+  }, [transcript, isRecording, isTranscribing]);
+
   const handleSubmit = () => {
     if (!value.trim()) return;
     onSubmit();
+  };
+
+  const toggleRecording = () => {
+    if (isRecording) {
+      stopRecording();
+    } else {
+      startRecording();
+    }
   };
 
   return (
@@ -42,7 +69,6 @@ export const ChatSidebar = ({
             <ChevronRight size={20} />
           </button>
         </div>
-
       </div>
 
       <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-10 scrollbar-hide relative z-10">
@@ -102,28 +128,64 @@ export const ChatSidebar = ({
       </div>
 
       <div className="p-6 md:p-8 bg-zinc-950/50 backdrop-blur-xl border-t border-white/5 relative z-20">
+
         <div className="relative group">
           <div className="absolute -inset-1 bg-brand/20 blur-xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-1000" />
+          
+          {/* Voice Status Overlay */}
+          {(isRecording || isTranscribing) && (
+            <div className="absolute inset-x-0 -top-12 flex items-center justify-center animate-in fade-in slide-in-from-bottom-2">
+              <div className="flex items-center gap-3 px-4 py-2 bg-brand rounded-full brand-glow shadow-2xl">
+                <div className="relative">
+                  <div className="w-2 h-2 rounded-full bg-white animate-ping" />
+                  <div className="absolute inset-0 w-2 h-2 rounded-full bg-white" />
+                </div>
+                <span className="text-[10px] font-black uppercase tracking-widest text-white">
+                  {isRecording ? 'Listening for Intent...' : 'Processing Neural Waves...'}
+                </span>
+              </div>
+            </div>
+          )}
+
           <input
             type="text"
-            value={value}
+            value={isRecording ? 'Listening...' : value}
             onChange={(e) => setValue(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
             placeholder="Neural instruction..."
-            className="w-full bg-zinc-950/80 border border-white/10 rounded-2xl px-6 py-5 pr-16 text-white text-sm font-bold placeholder:text-zinc-700 outline-none focus:border-brand/50 transition-all shadow-none relative z-10 noise"
+            disabled={isRecording || isTranscribing}
+            className="w-full bg-zinc-950/80 border border-white/10 rounded-2xl px-6 py-5 pr-28 text-white text-sm font-bold placeholder:text-zinc-700 outline-none focus:border-brand/50 transition-all shadow-none relative z-10 noise disabled:opacity-50"
           />
-          <button 
-            onClick={handleSubmit}
-            disabled={isPending || !thread}
-            className="absolute right-3 top-3 bottom-3 aspect-square bg-brand text-white rounded-[1.2rem] flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-none brand-glow border border-brand/20 z-20 disabled:opacity-50 disabled:grayscale"
-          >
-            {isPending ? (
-              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-            ) : (
-              <ArrowRight size={20} />
-            )}
-          </button>
+          
+          <div className="absolute right-3 top-3 bottom-3 flex items-center gap-2 z-20">
+            <button 
+              onClick={toggleRecording}
+              disabled={isPending || isTranscribing}
+              className={cn(
+                "h-full aspect-square rounded-[1.2rem] flex items-center justify-center transition-all shadow-none border z-20 disabled:opacity-50 disabled:grayscale",
+                isRecording 
+                  ? "bg-red-500/20 border-red-500/50 text-red-500 animate-pulse" 
+                  : "bg-white/5 border-white/10 text-zinc-500 hover:text-white hover:border-white/20"
+              )}
+              title={isRecording ? "Stop Recording" : "Voice Command"}
+            >
+              {isRecording ? <Square size={16} fill="currentColor" /> : <Mic size={18} />}
+            </button>
+
+            <button 
+              onClick={handleSubmit}
+              disabled={isPending || !thread || isRecording || isTranscribing}
+              className="h-full aspect-square bg-brand text-white rounded-[1.2rem] flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-none brand-glow border border-brand/20 z-20 disabled:opacity-50 disabled:grayscale"
+            >
+              {isPending || isTranscribing ? (
+                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              ) : (
+                <ArrowRight size={20} />
+              )}
+            </button>
+          </div>
         </div>
+        
         <p className="mt-4 text-center text-[9px] font-black text-zinc-700 uppercase tracking-[0.4em]">
            Neural Interface Session Active
         </p>

@@ -148,7 +148,7 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center gap-2">
           {isConnected ? (
             <div className="flex items-center gap-3 p-1 pl-3 bg-white/5 border border-white/10 rounded-full hover:border-brand/30 transition-all group">
-              <div className="flex flex-col items-end hidden md:flex">
+              <div className={cn("flex flex-col items-end hidden md:flex", isSidebarOpen && "!hidden")}>
                 <span className="text-[9px] font-black text-white leading-none uppercase tracking-tighter">{user?.login}</span>
                 <span className="text-[8px] text-zinc-500 leading-tight">Connected</span>
               </div>
@@ -168,7 +168,7 @@ export const Header: React.FC<HeaderProps> = ({
               disabled={isPending}
               className="flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 border border-white/5 text-zinc-400 hover:text-white hover:border-white/20 transition-all text-[10px] font-black uppercase tracking-widest disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <Github size={16} /> <span className="hidden sm:inline">Connect GitHub</span>
+              <Github size={16} /> <span className={cn("hidden sm:inline", isSidebarOpen && "!hidden")}>Connect GitHub</span>
             </button>
           )}
         </div>

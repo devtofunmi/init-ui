@@ -13,6 +13,7 @@ Unlike traditional generative UI that just outputs text or static HTML, Intent U
 ### Generative Engine (Tambo)
 
 - **Natural Language to UI**: Describe dashboards, landing pages, or application interfaces, and watch them build instantly.
+- **Voice-to-Interface Synthesis**: Native speech-to-intent synthesis for hands-free neural instructions.
 - **Component Streaming**: Uses `@tambo-ai/react` to stream component props and structures in real-time.
 - **Context Awareness**: Maintains conversation history to iteratively refine the interface.
 
