@@ -25,9 +25,11 @@
     "@radix-ui/react-tabs": "^1.1.13",
     "@radix-ui/react-tooltip": "^1.2.8",
     "@tambo-ai/react": "^0.73.1",
+    "@types/jszip": "^3.4.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.31.0",
+    "jszip": "^3.10.1",
     "lucide-react": "^0.563.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
@@ -35,7 +37,8 @@
     "recharts": "^3.7.0",
     "tailwind-merge": "^3.4.0",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^4.3.6"
+    "zod": "^4.3.6",
+    "jszip": "^3.10.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
