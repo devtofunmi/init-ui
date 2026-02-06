@@ -13,7 +13,8 @@ export const Header: React.FC<HeaderProps> = ({
   viewMode,
   setViewMode,
   handleExport,
-  canvasItems
+  canvasItems,
+  isPending
 }) => {
   const { isConnected, user, connect, disconnect } = useGitHub();
 
@@ -47,8 +48,9 @@ export const Header: React.FC<HeaderProps> = ({
               <div className="flex items-center gap-1 border-r border-white/10 pr-1.5 md:pr-2 mr-0.5 md:mr-1">
                 <button 
                   onClick={() => setViewMode('preview')}
+                  disabled={isPending}
                   className={cn(
-                    "flex items-center gap-2 px-2 md:px-3 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all",
+                    "flex items-center gap-2 px-2 md:px-3 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all disabled:opacity-50 disabled:cursor-not-allowed",
                     viewMode === 'preview' ? "bg-brand text-white brand-glow" : "text-zinc-500 hover:text-white"
                   )}
                   title="Preview"
@@ -57,19 +59,21 @@ export const Header: React.FC<HeaderProps> = ({
                 </button>
                 <button 
                   onClick={() => setViewMode('code')}
+                  disabled={isPending}
                   className={cn(
-                    "flex items-center gap-2 px-2 md:px-3 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all",
+                    "flex items-center gap-2 px-2 md:px-3 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all disabled:opacity-50 disabled:cursor-not-allowed",
                     viewMode === 'code' ? "bg-brand text-white brand-glow" : "text-zinc-500 hover:text-white"
                   )}
-                  title="IDE"
+                  title="Editor"
                 >
-                  <Code2 size={14} className="md:w-3 md:h-3" /> <span className="hidden xl:inline">IDE</span>
+                  <Code2 size={14} className="md:w-3 md:h-3" /> <span className="hidden xl:inline">Editor</span>
                 </button>
               </div>
               
               <button 
                 onClick={handleExport}
-                className="flex items-center gap-2 px-2 md:px-3 py-1.5 rounded-lg bg-white text-black text-[9px] font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-none shrink-0"
+                disabled={isPending}
+                className="flex items-center gap-2 px-2 md:px-3 py-1.5 rounded-lg bg-white text-black text-[9px] font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-none shrink-0 disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed"
                 title="Export"
               >
                 <Download size={14} className="md:w-3 md:h-3" /> <span className="hidden xl:inline">Export</span>
@@ -78,10 +82,11 @@ export const Header: React.FC<HeaderProps> = ({
               {isConnected && (
                 <button 
                   onClick={() => window.dispatchEvent(new CustomEvent('intent-ui-github-push'))}
-                  className="flex items-center gap-2 px-2 md:px-3 py-1.5 rounded-lg bg-brand text-white text-[9px] font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-none shrink-0 brand-glow"
-                  title="Deploy to GitHub"
+                  disabled={isPending}
+                  className="flex items-center gap-2 px-2 md:px-3 py-1.5 rounded-lg bg-brand text-white text-[9px] font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-none shrink-0 brand-glow disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed"
+                  title="Export to GitHub"
                 >
-                  <Cloud size={14} className="md:w-3 md:h-3" /> <span className="hidden xl:inline">Deploy</span>
+                  <Cloud size={14} className="md:w-3 md:h-3" /> <span className="hidden xl:inline">Export to GitHub</span>
                 </button>
               )}
             </div>
@@ -101,7 +106,8 @@ export const Header: React.FC<HeaderProps> = ({
               <img src={user?.avatar_url} alt={user?.login} className="w-8 h-8 rounded-full border border-white/20" />
               <button 
                 onClick={disconnect}
-                className="p-2 text-zinc-500 hover:text-red-400 transition-colors"
+                disabled={isPending}
+                className="p-2 text-zinc-500 hover:text-red-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 title="Disconnect GitHub"
               >
                 <LogOut size={14} />
@@ -110,7 +116,8 @@ export const Header: React.FC<HeaderProps> = ({
           ) : (
             <button 
               onClick={connect}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 border border-white/5 text-zinc-400 hover:text-white hover:border-white/20 transition-all text-[10px] font-black uppercase tracking-widest"
+              disabled={isPending}
+              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 border border-white/5 text-zinc-400 hover:text-white hover:border-white/20 transition-all text-[10px] font-black uppercase tracking-widest disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Github size={16} /> <span className="hidden sm:inline">Connect GitHub</span>
             </button>

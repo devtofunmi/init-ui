@@ -17,27 +17,104 @@ export const Canvas = ({ thread, canvasItems, viewMode, isStreaming }: { thread:
   const projectFiles = useMemo(() => {
     // ... logic remains same
     const files: Record<string, any> = {
-      "/App.tsx": appCode,
+      "/src/App.tsx": appCode,
       "/src/components/ui/wrappers.tsx": {
         code: `// Shadcn UI Wrapper Components\n// This file contains the registry implementation for your components.`,
         active: false
       },
-      "/tailwind.config.js": {
-        code: `/** @type {import('tailwindcss').Config} */\nmodule.exports = {\n  content: ["./src/**/*.{js,jsx,ts,tsx}"],\n  theme: {\n    extend: {},\n  },\n  plugins: [],\n};`,
+      "/tailwind.config.ts": {
+        code: `import type { Config } from 'tailwindcss'\n\nexport default {\n  content: ["./src/**/*.{js,jsx,ts,tsx}"],\n  theme: {\n    extend: {},\n  },\n  plugins: [],\n} satisfies Config`,
+        active: false
+      },
+      "/vite.config.ts": {
+        code: `import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+})`,
+        active: false
+      },
+      "/index.html": {
+        code: `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intent UI Project</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/index.tsx"></script>
+  </body>
+</html>`,
         active: false
       },
       "/package.json": {
         code: JSON.stringify({
           name: "intent-ui-export",
           version: "1.0.0",
+          scripts: {
+            "dev": "vite",
+            "build": "vite build",
+            "preview": "vite preview"
+          },
           dependencies: {
-            "react": "^18.0.0",
-            "react-dom": "^18.0.0",
+            "react": "^18.2.0",
+            "react-dom": "^18.2.0",
             "lucide-react": "latest",
-            "tailwindcss": "latest",
-            "@tambo-ai/react": "latest"
+             "clsx": "latest",
+            "tailwind-merge": "latest"
+          },
+          devDependencies: {
+            "@types/react": "^18.2.66",
+            "@types/react-dom": "^18.2.22",
+            "@vitejs/plugin-react": "^4.2.1",
+            "autoprefixer": "^10.4.19",
+            "postcss": "^8.4.38",
+            "tailwindcss": "^3.4.3",
+            "typescript": "^5.2.2",
+            "vite": "^5.2.0"
           }
         }, null, 2),
+        active: false
+      },
+      "/src/index.tsx": {
+        code: `import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.tsx'
+import './index.css'
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+)`,
+        active: false
+      },
+      "/src/index.css": {
+        code: `@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+}`,
         active: false
       }
     };
@@ -259,11 +336,11 @@ export const Canvas = ({ thread, canvasItems, viewMode, isStreaming }: { thread:
                     font-weight: 900 !important;
                   }
                 `}</style>
-                <SandpackReact.SandpackProvider 
-                  template="react-ts"
-                  theme="dark"
-                  files={projectFiles}
-                >
+                  <SandpackReact.SandpackProvider 
+                    template="vite-react-ts"
+                    theme="dark"
+                    files={projectFiles}
+                  >
                   <SandpackReact.SandpackLayout className="flex-1 border-0" style={{ height: '100%' }}>
                     <SandpackReact.SandpackFileExplorer />
                     <SandpackReact.SandpackCodeEditor 
