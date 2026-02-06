@@ -210,7 +210,7 @@ const Landing: React.FC<LandingProps> = ({ onLaunch }) => {
 
         {/* Stats Section */}
         <section id="stats" className="w-full py-12 md:py-24 px-6 md:px-8 relative overflow-hidden scroll-mt-24">
-          <div className="max-w-7xl mx-auto glass-card noise premium-border py-12 md:py-24 px-6 md:px-12 rounded-[2.5rem] md:rounded-[4rem] shadow-none relative">
+          <div className="max-w-7xl mx-auto glass-card noise premium-border py-12 md:py-24 px-6 md:px-12 rounded-[2.5rem] md:rounded-[4rem] shadow-none relative overflow-hidden">
             <div className="absolute inset-0 bg-brand/5 blur-[80px] rounded-full pointer-events-none" />
             
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-16 relative z-10">
