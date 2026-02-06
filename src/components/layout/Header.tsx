@@ -27,7 +27,7 @@ export const Header: React.FC<HeaderProps> = ({
           className="flex items-center gap-2 md:gap-3 group px-2 md:px-4 py-2 rounded-xl hover:bg-white/5 transition-all border border-transparent hover:border-white/5 shrink-0"
         >
           <ChevronLeft size={18} className="text-zinc-500 group-hover:text-brand transition-colors" />
-          <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 group-hover:text-white transition-colors hidden sm:inline">Return</span>
+          <span className={cn("text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 group-hover:text-white transition-colors hidden sm:inline", isSidebarOpen && "!hidden")}>Return</span>
         </button>
         
         <div className="h-6 w-px bg-white/10 hidden md:block" />
@@ -113,7 +113,7 @@ export const Header: React.FC<HeaderProps> = ({
                 className="flex items-center gap-2 px-2 md:px-3 py-1.5 rounded-lg bg-white text-black text-[9px] font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-none shrink-0 disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed"
                 title="Export"
               >
-                <Download size={14} className="md:w-3 md:h-3" /> <span className="hidden xl:inline">Export</span>
+                <Download size={14} className="md:w-3 md:h-3" /> <span className={cn("hidden xl:inline", isSidebarOpen && "!hidden")}>Export</span>
               </button>
 
               {isConnected && (
@@ -123,7 +123,7 @@ export const Header: React.FC<HeaderProps> = ({
                   className="flex items-center gap-2 px-2 md:px-3 py-1.5 rounded-lg bg-brand text-white text-[9px] font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-none shrink-0 brand-glow disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed"
                   title="Export to GitHub"
                 >
-                  <Cloud size={14} className="md:w-3 md:h-3" /> <span className="hidden xl:inline">Export to GitHub</span>
+                  <Cloud size={14} className="md:w-3 md:h-3" /> <span className={cn("hidden xl:inline", isSidebarOpen && "!hidden")}>Export to GitHub</span>
                 </button>
               )}
 
@@ -136,7 +136,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <svg width="12" height="12" viewBox="0 0 76 65" fill="none" xmlns="http://www.w3.org/2000/svg" className="md:w-3 md:h-3">
                   <path d="M37.5274 0L75.0548 65H0L37.5274 0Z" fill="currentColor"/>
                 </svg>
-                <span className="hidden xl:inline">Deploy to Vercel</span>
+                <span className={cn("hidden xl:inline", isSidebarOpen && "!hidden")}>Deploy to Vercel</span>
               </button>
             </div>
           )}
