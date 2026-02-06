@@ -48,6 +48,10 @@ export interface HeaderProps {
   setSidebarOpen: (open: boolean) => void;
   isPending: boolean;
   onBack: () => void;
+  viewMode: 'preview' | 'code';
+  setViewMode: (mode: 'preview' | 'code') => void;
+  handleExport: () => void;
+  canvasItems: CanvasItem[];
 }
 
 export interface ChatSidebarProps {
@@ -64,7 +68,7 @@ export interface ChatSidebarProps {
 export interface CanvasProps {
   thread: Thread | null;
   canvasItems: CanvasItem[];
-  onTryExample: (prompt: string) => void;
+  viewMode: 'preview' | 'code';
 }
 
 export interface LandingProps {
