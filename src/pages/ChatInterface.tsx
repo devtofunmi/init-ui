@@ -149,7 +149,7 @@ const ChatInterface = React.memo(({ onBackToLanding }: ChatInterfaceProps) => {
 
   // Handle export project as a zip file
   const handleExport = async () => {
-    const event = new CustomEvent('intent-ui-export');
+    const event = new CustomEvent('init-ui-export');
     window.dispatchEvent(event);
   };
 

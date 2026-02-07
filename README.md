@@ -1,124 +1,70 @@
-# INTENT UI
+# INIT UI
 
-### Intent-Driven Generative UI Platform
+### Interface Initializer Platform
 
-**Intent UI** is a "Prompt-to-Platform" engine that generates **high-fidelity, interactive React UIs** based on natural language.
+**Init UI** is a prompt-to-interface platform that initializes production-ready UI code from natural language, with live preview, export, and GitHub sync.
 
-Unlike traditional generative UI that just outputs text or static HTML, Intent UI streams **live React components**, renders them in real-time, and provides a full **embedded Editor** (Sandpack) for code inspection and editing. You can then **export your creation** as a ZIP file, **push directly to GitHub**, or **deploy instantly to Vercel**.
+Unlike traditional generative UI that just outputs text or static HTML, **Init UI** initializes **high-fidelity, interactive React UIs** based on natural language, renders them in real-time, and provides a full **embedded Editor** (Sandpack) for code inspection and editing.
 
----
+## Key Philosophy
+
+- **Initialize, don't just generate**: This is the starting layer before production.
+- **Prompt to Production**: Describe it. Init it.
+- **Where UI begins**: From neural intent to actual code.
 
 ## Features
 
-### Generative Engine (Tambo)
-
-- **Natural Language to UI**: Describe dashboards, landing pages, or application interfaces, and watch them build instantly.
+- **Neural Synthesis Engine**: Real-time generation of React components.
+- **Living Canvas**: Responsive preview with multi-device viewport testing.
+- **Embedded IDE**: Integrated Sandpack explorer for instant code modifications.
+- **GitHub Bridge**: Push your synthesized interfaces directly to a repository.
+- **Cloud Deployment**: Instant deployment to Vercel.
 - **Voice-to-Interface Synthesis**: Native speech-to-intent synthesis for hands-free neural instructions.
-- **Component Streaming**: Uses `@tambo-ai/react` to stream component props and structures in real-time.
-- **Context Awareness**: Maintains conversation history to iteratively refine the interface.
 
-### Dual-Mode Canvas
+## Tech Stack
 
-- **Visual Preview**: Interact with the generated application in a high-fidelity rendering environment.
-- **Responsive Testing**: Toggle between **Desktop, Tablet, and Mobile** viewports instantly to verify the responsiveness of the generated code.
-- **Live Editor (Sandpack)**: Switch to a full browser-based editor (powered by CodeSandbox) to inspect files, edit code, and see changes live.
+- **Framework**: Vite + React + TypeScript
+- **Styling**: Tailwind CSS + Shadcn UI
+- **Generative Core**: @tambo-ai/react
+- **Editor**: @codesandbox/sandpack-react
+- **Motion**: Framer Motion
 
-### Seamless Deployment & Export
+## Getting Started
 
-- **Instant Vercel Deployment**: Connect your Vercel account via API Token and deploy your project to production in one click. Includes automatic SPA routing configuration (`vercel.json`).
-- **One-Click GitHub Push**: Connect your GitHub account (OAuth or PAT) and push your generated app to a new repository instantly.
-- **ZIP Download**: Export a fully configured **Vite + React + TypeScript** project structure, ready for local development or custom deployment.
-
-### Modern Stack
-
-- **Shadcn UI & Tailwind**: Generated apps use industry-standard libraries for beautiful, accessible, and maintainable code.
-- **Framer Motion**: Smooth animations for generation and transitions.
-- **Lucide Icons**: High-energy iconography.
-- **Vite-Optimized**: Exports include `vite.config.ts`, `index.html`, and proper `package.json` scripts for maximum compatibility.
-
----
-
-## Architecture
-
-- **Frontend**: React 19 + Vite + TypeScript
-- **AI Orchestration**: `@tambo-ai/react` (Tambo SDK)
-- **Code Environment**: `@codesandbox/sandpack-react`
-- **Styling**: Tailwind CSS + `clsx` + `tailwind-merge`
-- **Integrations**:
-  - **Vercel API**: Direct deployment synthesis using Vercel serverless platform.
-  - **Octokit**: GitHub API integration for repo creation and commits.
-  - **JSZip**: Client-side project packaging.
-
----
-
-## Quick Start
-
-### 1. Clone & Install
+1. **Clone the Repo**
 
 ```bash
-git clone https://github.com/devtofunmi/intent-ui.git
-cd intent-ui
+git clone https://github.com/devtofunmi/init-ui.git
+cd init-ui
+```
+
+2. **Install Dependencies**
+
+```bash
 npm install
 ```
 
-### 2. Environment Setup
-
-Create a `.env` file in the root directory:
-
-```bash
-cp .env.example .env
-```
-
-Add your required keys:
+3. **Configure Environment**
+   Create a `.env` file based on `.env.example`:
 
 ```env
-# Required for AI Generation
-VITE_TAMBO_PUBLIC_KEY=your_tambo_public_key
-
-# GitHub OAuth (For Production)
-VITE_GITHUB_CLIENT_ID=your_github_client_id
-GITHUB_CLIENT_SECRET=your_github_client_secret
-
-# Vercel Deployment (Stored locally in-app, but can be pre-configured)
-# VERCEL_TOKEN=your_vercel_token
+VITE_TAMBO_PUBLIC_KEY=your_key_here
+VITE_GITHUB_CLIENT_ID=optional_for_oauth
 ```
 
-### 3. Run Locally
+4. **Launch**
 
 ```bash
 npm run dev
 ```
 
----
+## Deployment
 
-## Deployment Configuration
+Init UI is pre-configured for seamless production hosting:
 
-Intent UI is pre-configured for seamless production hosting:
-
-- **Single Page Application (SPA)**: Includes `vercel.json` with rewrites to ensure all routes resolve to `index.html`.
-- **API Functions**: Includes serverless function handlers in `/api` for OAuth token exchange.
+- Build: `npm run build`
+- Preview: `npm run preview`
 
 ---
 
-## Project Structure
-
-```text
-src/
-├── components/
-│   ├── layout/       # App shell (Canvas, Header, Sidebars)
-│   ├── modals/       # GitHub, Vercel & Auth modals
-│   ├── registry/     # Component mapping for AI
-│   └── ui/           # Shadcn UI primitives
-├── lib/
-│   ├── github/       # Octokit integration & Auth context
-│   └── export-utils.ts # Source code generation logic
-├── pages/
-│   ├── Landing.tsx   # Zero-state entry point
-│   ├── ChatInterface.tsx # Main controller & layout
-│   └── AuthCallback.tsx # OAuth handler
-└── main.tsx          # App entry
-```
-
----
-
-_Built for the future of interface design._
+© 2026 INIT UI TECHNOLOGIES CO.

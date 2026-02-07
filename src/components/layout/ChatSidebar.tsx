@@ -149,7 +149,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
                   <div className="absolute inset-0 w-2 h-2 rounded-full bg-white" />
                 </div>
                 <span className="text-[10px] font-black uppercase tracking-widest text-white">
-                  {isRecording ? 'Listening for Intent...' : 'Processing Neural Waves...'}
+                  {isRecording ? 'Listening for Init...' : 'Processing Neural Waves...'}
                 </span>
               </div>
             </div>

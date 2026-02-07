@@ -1,4 +1,4 @@
-// Shared TypeScript interfaces and types for the Intent-UI workspace
+// Shared TypeScript interfaces and types for the Init UI workspace
 
 export interface Thread {
   id: string;

@@ -21,7 +21,7 @@ export const GithubPushModal: React.FC<GithubPushModalProps> = ({
   token
 }) => {
   const [repoName, setRepoName] = useState(thread?.name?.toLowerCase().replace(/[^a-z0-9]+/g, '-') || '');
-  const [description, setDescription] = useState(`Project synthesized with Intent UI - ${thread?.name || ''}`);
+  const [description, setDescription] = useState(`Project initialized with Init UI - ${thread?.name || ''}`);
   const [isPrivate, setIsPrivate] = useState(true);
   const [status, setStatus] = useState<'idle' | 'pushing' | 'success' | 'error'>('idle');
   const [repoUrl, setRepoUrl] = useState('');
@@ -76,7 +76,7 @@ export const GithubPushModal: React.FC<GithubPushModalProps> = ({
       const { data: commit } = await octokit.rest.git.createCommit({
         owner,
         repo: name,
-        message: '🚀 Synthesized with Intent UI',
+        message: '🚀 Initialized with Init UI',
         tree: tree.sha,
         parents: [latestCommitSha]
       });

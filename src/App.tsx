@@ -32,10 +32,10 @@ const TamboAppInner = () => {
 
   // Generate a persistent anonymous ID for non-logged in users to isolate their history
   const [visitorId] = useState(() => {
-    let id = localStorage.getItem('intent_ui_visitor_id');
+    let id = localStorage.getItem('init_ui_visitor_id');
     if (!id) {
       id = `vis_${Math.random().toString(36).slice(2, 11)}`;
-      localStorage.setItem('intent_ui_visitor_id', id);
+      localStorage.setItem('init_ui_visitor_id', id);
     }
     return id;
   });

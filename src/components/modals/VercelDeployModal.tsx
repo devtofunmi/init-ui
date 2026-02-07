@@ -38,7 +38,7 @@ export const VercelDeployModal: React.FC<VercelDeployModalProps> = ({
         data: typeof content === 'string' ? content : content.code
       }));
 
-      const projectName = thread?.name?.toLowerCase().replace(/[^a-z0-9]+/g, '-') || 'intent-ui-project';
+      const projectName = thread?.name?.toLowerCase().replace(/[^a-z0-9]+/g, '-') || 'init-ui-project';
 
       const response = await fetch('https://api.vercel.com/v13/deployments', {
         method: 'POST',
@@ -131,7 +131,7 @@ export const VercelDeployModal: React.FC<VercelDeployModalProps> = ({
                       <div className="space-y-1">
                         <p className="text-sm font-bold text-blue-200">Vercel API Token Required</p>
                         <p className="text-xs text-blue-300/80 leading-relaxed">
-                          To deploy directly from Intent UI, you need a Vercel Access Token. 
+                          To deploy directly from Init UI, you need a Vercel Access Token. 
                           It will be stored locally in your browser.
                         </p>
                       </div>

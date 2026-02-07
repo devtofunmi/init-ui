@@ -56,7 +56,7 @@ export default defineConfig({
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Intent UI Project</title>
+    <title>Init UI Project</title>
   </head>
   <body>
     <div id="root"></div>
@@ -67,7 +67,7 @@ export default defineConfig({
       },
       "/package.json": {
         code: JSON.stringify({
-          name: "intent-ui-export",
+          name: "init-ui-export",
           version: "1.0.0",
           scripts: {
             "dev": "vite",
@@ -168,7 +168,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       // Dynamic naming based on thread name
       const safeName = thread?.name 
         ? thread.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') 
-        : 'intent-ui-project';
+        : 'init-ui-project';
       
       a.download = `${safeName}.zip`;
       a.click();
@@ -183,15 +183,15 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
   // Listen for export events from the Header
   React.useEffect(() => {
-    window.addEventListener('intent-ui-export', handleLocalExport);
+    window.addEventListener('init-ui-export', handleLocalExport);
     const handleGithubPushEvent = () => setGithubModalOpen(true);
     const handleVercelDeployEvent = () => setVercelModalOpen(true);
-    window.addEventListener('intent-ui-github-push', handleGithubPushEvent);
-    window.addEventListener('intent-ui-vercel-deploy', handleVercelDeployEvent);
+    window.addEventListener('init-ui-github-push', handleGithubPushEvent);
+    window.addEventListener('init-ui-vercel-deploy', handleVercelDeployEvent);
     return () => {
-      window.removeEventListener('intent-ui-export', handleLocalExport);
-      window.removeEventListener('intent-ui-github-push', handleGithubPushEvent);
-      window.removeEventListener('intent-ui-vercel-deploy', handleVercelDeployEvent);
+      window.removeEventListener('init-ui-export', handleLocalExport);
+      window.removeEventListener('init-ui-github-push', handleGithubPushEvent);
+      window.removeEventListener('init-ui-vercel-deploy', handleVercelDeployEvent);
     };
   }, [handleLocalExport]);
 

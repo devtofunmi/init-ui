@@ -78,7 +78,7 @@ export const AuthErrorModal: React.FC<AuthErrorModalProps> = ({
                 </div>
 
                 <a 
-                  href="https://github.com/settings/tokens/new?scopes=repo,user&description=Intent%20UI%20Local%20Development"
+                  href="https://github.com/settings/tokens/new?scopes=repo,user&description=Init%20UI%20Local%20Development"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 w-full py-3 bg-brand/10 border border-brand/30 text-brand rounded-xl font-black uppercase tracking-widest text-[10px] hover:bg-brand/20 transition-all"

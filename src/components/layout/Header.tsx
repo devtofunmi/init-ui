@@ -118,7 +118,7 @@ export const Header: React.FC<HeaderProps> = ({
 
               {isConnected && (
                 <button 
-                  onClick={() => window.dispatchEvent(new CustomEvent('intent-ui-github-push'))}
+                  onClick={() => window.dispatchEvent(new CustomEvent('init-ui-github-push'))}
                   disabled={isPending}
                   className="flex items-center gap-2 px-2 md:px-3 py-1.5 rounded-lg bg-brand text-white text-[9px] font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-none shrink-0 brand-glow disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed"
                   title="Export to GitHub"
@@ -128,7 +128,7 @@ export const Header: React.FC<HeaderProps> = ({
               )}
 
               <button 
-                onClick={() => window.dispatchEvent(new CustomEvent('intent-ui-vercel-deploy'))}
+                onClick={() => window.dispatchEvent(new CustomEvent('init-ui-vercel-deploy'))}
                 disabled={isPending}
                 className="flex items-center gap-2 px-2 md:px-3 py-1.5 rounded-lg bg-white text-black text-[9px] font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-none shrink-0 disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed"
                 title="Deploy to Vercel"

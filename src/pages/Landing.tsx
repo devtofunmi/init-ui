@@ -83,13 +83,13 @@ const Landing: React.FC<LandingProps> = ({ onLaunch }) => {
                <Sparkles size={20} className="text-white animate-pulse" />
              </div>
              <div className="text-xl font-black tracking-tighter text-white ml-1 italic uppercase">
-               Intent <span className="text-brand">UI</span>
+               Init <span className="text-brand">UI</span>
              </div>
           </a>
 
           <div className="hidden md:flex items-center gap-10">
             <a href="#features" onClick={(e) => handleScroll(e, '#features')} className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 hover:text-white transition-colors">Features</a>
-            <a href="https://github.com/devtofunmi/intent-ui" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 hover:text-white transition-colors">
+            <a href="https://github.com/devtofunmi/init-ui" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 hover:text-white transition-colors">
               <Github size={14} /> GitHub
             </a>
           </div>
@@ -110,10 +110,10 @@ const Landing: React.FC<LandingProps> = ({ onLaunch }) => {
           <div className="space-y-10 max-w-4xl w-full animate-in fade-in slide-in-from-bottom-8 duration-1000">
             <div className="space-y-6">
               <h1 className="text-4xl md:text-7xl font-black text-white italic tracking-tighter uppercase leading-[0.9] drop-shadow-none">
-                Design your <span className="text-brand">Vision</span>
+                Initialize your <span className="text-brand">Vision</span>
               </h1>
               <p className="text-lg md:text-xl text-zinc-400 font-medium max-w-xl mx-auto tracking-wide leading-relaxed px-4">
-                Build apps and websites by chatting with AI. Experience the magic of neural synthesis.
+                The starting layer for your next interface. Initialize production-ready UI from natural language.
               </p>
             </div>
 
@@ -166,10 +166,10 @@ const Landing: React.FC<LandingProps> = ({ onLaunch }) => {
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
               <div className="max-w-2xl space-y-6">
                 <h2 className="text-4xl md:text-7xl font-black text-white tracking-tighter leading-[0.9] text-gradient italic uppercase">
-                  Neural <br /> Infrastructure
+                  Initialize <br /> Infrastructure
                 </h2>
                 <p className="text-zinc-500 text-lg md:text-xl font-medium max-w-lg leading-relaxed">
-                  Experience the convergence of artificial intelligence and high-fidelity interface design.
+                  Describe it. Init it. Experience the magic of prompt-to-production synthesis.
                 </p>
               </div>
             </div>
@@ -241,11 +241,11 @@ const Landing: React.FC<LandingProps> = ({ onLaunch }) => {
             <div className="max-w-4xl mx-auto space-y-8 md:space-y-14 relative z-10">
               <div className="space-y-4 md:space-y-6">
                 <h2 className="text-2xl  md:text-7xl font-black text-white tracking-[-0.05em] leading-[1.2] text-gradient italic uppercase">
-                  Ready to manifest <br />
+                  Ready to initialize <br />
                   <span className="text-white/30 truncate uppercase">your next project?</span>
                 </h2>
                 <p className="text-zinc-500 font-medium text-lg md:text-2xl max-w-2xl mx-auto leading-tight md:leading-snug">
-                  Join the elite league of developers building with neural intent.
+                  Join the elite league of developers building with generative intent.
                 </p>
               </div>
               
@@ -273,10 +273,10 @@ const Landing: React.FC<LandingProps> = ({ onLaunch }) => {
               <div className="space-y-12 text-left">
                 <div className="space-y-6">
                   <div className="text-4xl font-black tracking-[-0.05em] text-white brand-gradient-text uppercase leading-none italic">
-                    Intent <span className="text-brand">UI</span>
+                    Init <span className="text-brand">UI</span>
                   </div>
                   <p className="text-zinc-500 text-xl md:text-2xl font-medium leading-tight max-w-md">
-                    Architecting the next generation of human-machine intent interfaces.
+                    The starting layer for high-fidelity interface development.
                   </p>
                 </div>
               </div>
@@ -304,7 +304,7 @@ const Landing: React.FC<LandingProps> = ({ onLaunch }) => {
                   <h4 className="text-[11px] font-black uppercase tracking-[0.4em] text-brand/80">Connect</h4>
                   <ul className="space-y-6 text-left md:text-right">
                     <li>
-                      <a href="https://github.com/devtofunmi/intent-ui" className="text-zinc-500 hover:text-white transition-colors text-lg md:text-xl font-bold tracking-tight inline-block hover:-translate-x-2">
+                      <a href="https://github.com/devtofunmi/init-ui" className="text-zinc-500 hover:text-white transition-colors text-lg md:text-xl font-bold tracking-tight inline-block hover:-translate-x-2">
                         GitHub
                       </a>
                     </li>
@@ -316,7 +316,7 @@ const Landing: React.FC<LandingProps> = ({ onLaunch }) => {
             <div className="pt-16 border-t border-white/5 flex flex-col lg:flex-row justify-between items-center gap-10 relative z-10">
               <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-10 text-left">
                 <p className="text-zinc-600 text-[10px] font-black uppercase tracking-[0.4em]">
-                  © 2026 INTENT UI TECHNOLOGIES CO.
+                  © 2026 INIT UI TECHNOLOGIES CO.
                 </p>
                 <div className="hidden lg:block w-1.5 h-1.5 rounded-full bg-brand/20" />
                 <p className="text-zinc-600 text-[10px] font-black uppercase tracking-[0.4em]">
@@ -327,7 +327,7 @@ const Landing: React.FC<LandingProps> = ({ onLaunch }) => {
 
             {/* Subtle Watermark */}
             <div className="absolute bottom-8 right-12 opacity-[0.02] pointer-events-none select-none">
-               <div className="text-[120px] font-black tracking-tighter leading-none italic uppercase">Intent</div>
+               <div className="text-[120px] font-black tracking-tighter leading-none italic uppercase">Init</div>
             </div>
           </div>
         </footer>

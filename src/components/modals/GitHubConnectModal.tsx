@@ -100,7 +100,7 @@ export const GitHubConnectModal: React.FC<GitHubConnectModalProps> = ({
                   </div>
 
                   <a 
-                    href="https://github.com/settings/tokens/new?scopes=repo,user&description=Intent%20UI%20Local%20Development"
+                    href="https://github.com/settings/tokens/new?scopes=repo,user&description=Init%20UI%20Local%20Development"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-[10px] text-brand hover:text-brand/80 transition-colors font-bold uppercase tracking-widest"
@@ -212,7 +212,7 @@ export const GitHubConnectModal: React.FC<GitHubConnectModalProps> = ({
                   </div>
 
                   <a 
-                    href="https://github.com/settings/tokens/new?scopes=repo,user&description=Intent%20UI%20Local%20Development"
+                    href="https://github.com/settings/tokens/new?scopes=repo,user&description=Init%20UI%20Local%20Development"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-[10px] text-brand hover:text-brand/80 transition-colors font-bold uppercase tracking-widest"
