@@ -9,6 +9,14 @@ interface LandingProps {
 const Landing: React.FC<LandingProps> = ({ onLaunch }) => {
   const [value, setValue] = useState("");
   const [isPending, setIsPending] = useState(false);
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const onSubmit = () => {
     if (!value.trim()) return;
@@ -126,7 +134,7 @@ const Landing: React.FC<LandingProps> = ({ onLaunch }) => {
                   value={value}
                   onChange={(e) => setValue(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && onSubmit()}
-                  placeholder="What do you want to build today?"
+                  placeholder={isMobile ? "Build something today..." : "What do you want to build today?"}
                   className="w-full bg-white/[0.03] border border-white/10 rounded-[2rem] md:rounded-[2.5rem] px-6 md:px-8 py-5 md:py-6 pr-16 md:pr-24 text-base md:text-lg font-bold text-white placeholder:text-zinc-700 outline-none focus:border-brand/50 transition-all shadow-none noise overflow-hidden"
                 />
                 <button
